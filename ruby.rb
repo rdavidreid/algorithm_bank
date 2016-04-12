@@ -29,3 +29,22 @@ def my_uniq(str)
   end
   true
 end
+
+# Cracking Code Interview 1.3
+
+def is_perm?(str1,str2)
+  my_hash = Hash.new(0)
+  str1.each_char do |chr|
+    my_hash[chr] += 1
+  end
+  str2.each_char do |chr|
+    my_hash[chr] -= 1
+  end
+  my_hash.each do |_, value|
+    return false if value != 0
+  end
+  true
+end
+
+# is_perm?("cat", "bat")
+# is_perm?("cat", "atc")

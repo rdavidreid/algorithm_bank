@@ -18,3 +18,34 @@ var myUniq = function(str) {
   }
   return true;
 };
+
+// Cracking Code Interview 1.3
+
+var myPerm = function(str1,str2) {
+  var myObj = {};
+  var ans = true;
+  for (var i = 0; i < str1.length; i ++) {
+    if (myObj[i] === undefined) {
+      myObj[i] = 1;
+    }
+    else {
+      myObj[i] ++;
+    }
+  }
+
+  for (var j = 0; j < str2.length; j ++) {
+    if (myObj[j] === undefined) {
+      myObj[j] = -1;
+    }
+    else {
+      myObj[j] -= 1;
+    }
+  }
+  debugger;
+  Object.keys(myObj).forEach(function(key) {
+    if (myObj[key] != "0") {
+      ans =  false;
+    }
+  });
+  return ans;
+};
