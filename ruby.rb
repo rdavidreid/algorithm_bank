@@ -18,3 +18,14 @@ def fizzbuzz(arr)
   end
   ans
 end
+
+# Cracking Code Interview 1.1
+
+def my_uniq(str)
+  letters = Hash.new(false)
+  str.each_char do |chr|
+    return false if letters[chr]
+    letters[chr] = true
+  end
+  true
+end
