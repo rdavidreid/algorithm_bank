@@ -41,11 +41,34 @@ var myPerm = function(str1,str2) {
       myObj[j] -= 1;
     }
   }
-  debugger;
   Object.keys(myObj).forEach(function(key) {
     if (myObj[key] != "0") {
       ans =  false;
     }
   });
   return ans;
+};
+
+var myCompress = function(str) {
+  var ans = "";
+  var count = 1;
+  var prev = str[0];
+  for (var i = 0; i <= str.length; i ++) {
+    if (i === 0 ) {
+      continue;
+    }
+    else if  (prev === str[i]) {
+      count += 1;
+    }
+    else {
+      ans += count;
+      ans += prev;
+      count = 1;
+    }
+    prev = str[i];
+  }
+  if (ans.length < str.length) {
+    return ans;
+  }
+  return str;
 };

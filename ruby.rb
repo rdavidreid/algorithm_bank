@@ -48,3 +48,28 @@ end
 
 # is_perm?("cat", "bat")
 # is_perm?("cat", "atc")
+
+# Crackig Code Interview 1.5
+def my_compress(str)
+  ans = ""
+  count = 1
+  prev = str[0]
+  idx = 1
+  while idx <= str.length
+    if prev == str[idx]
+      count += 1
+    else
+      ans += count.to_s
+      ans += prev
+      count = 1
+    end
+    prev = str[idx]
+    idx += 1
+  end
+  # puts "ans: #{ans.length} #{ans}"
+  # puts "str: #{str.length} #{str}"
+  ans.length < str.length ? ans : str
+end
+
+# my_compress("davvawidddddddd")
+# my_compress("davvawidddddd")
