@@ -73,3 +73,55 @@ end
 
 # my_compress("davvawidddddddd")
 # my_compress("davvawidddddd")
+
+
+# Crackig Code Interview 1.6
+# stationary:
+def my_rotate(arr)
+  row_length = arr.length
+  col_length = arr[0].length
+  ans = []
+  (0...col_length).each do |col|
+    ans[col] ||= []
+    (0...row_length).each do |row|
+      new_row = col_length - col - 1
+      ans[col] << arr[row][new_row]
+    end
+  end
+  ans
+end
+
+# Crackig Code Interview 1.7
+
+def row_col_zero(arr)
+  rows_to_zero = []
+  cols_to_zero = []
+  arr.each_with_index do |row, row_idx|
+    row.each_with_index do |el, col|
+      if el == 0
+        cols_to_zero << col
+        rows_to_zero << row_idx
+      end
+    end
+  end
+  rows_to_zero.each do |row|
+    arr[row].map! {|el| el = 0}
+  end
+  cols_to_zero.each do |col|
+    arr.each do |row|
+      row[col] = 0
+    end
+  end
+  arr
+end
+
+# Crackig Code Interview 1.8
+def check_rotation(str1,str2)
+  str1.is_substring?(str2 * 2)
+end
+
+class String
+  def is_substring?(str)
+    str.include?(self)
+  end
+end
