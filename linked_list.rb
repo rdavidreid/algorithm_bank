@@ -1,3 +1,8 @@
+
+###########################
+### Double Linked List ####
+###########################
+
 class Double_node
   attr_accessor :before, :after, :value
 
@@ -48,6 +53,7 @@ class Double_linked_list
 
 
 # Cracking Code Interview 2.1
+
   def delete_from_list(node)
     node.before.after = node.after
     node.after.before = node.before
@@ -70,6 +76,10 @@ class Double_linked_list
 
 end
 
+###########################
+### Single Linked List ####
+###########################
+
 class Single_node
   attr_accessor :after, :value
 
@@ -84,28 +94,51 @@ class Single_linked_list
 
   attr_accessor :head
 
-  def initialize(head = Double_node.new, tail = Double_node.new)
+  def initialize(head = Single_node.new, tail = Single_node.new)
     head.after = tail
-    tail.before = head
     @head = head
+    @tail = tail
+  end
+
+  def seed
+    push(Single_node.new("one"))
+    push(Single_node.new("two"))
+    push(Single_node.new("three"))
+    push(Single_node.new("four"))
+    push(Single_node.new("five"))
+    push(Single_node.new("four"))
   end
 
   def push(new_node)
     node = @head
-    while node.after != nil
+    while node.after.value != nil
       node = node.after
     end
     node.after = new_node
-    new_node.after = nil
+    new_node.after = @tail
   end
 
-  def print_list
+  def print
     node = @head
     while node
       puts node.value
       node = node.after
     end
     nil
+  end
+
+  def kth_last(k)
+    node = @head.after
+    count = 0
+    while node.value
+      node = node.after
+      count += 1
+    end
+    node = @head.after
+    (count - k).times do
+      node = node.after
+    end
+    node
   end
 
 end
