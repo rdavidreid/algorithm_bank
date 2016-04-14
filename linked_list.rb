@@ -20,6 +20,15 @@ class Double_linked_list
     @tail = tail
   end
 
+  def seed
+    push(Double_node.new("one"))
+    push(Double_node.new("two"))
+    push(Double_node.new("three"))
+    push(Double_node.new("four"))
+    push(Double_node.new("five"))
+    push(Double_node.new("four"))
+  end
+
   def push(new_node)
     second_to_last = @tail.before
     second_to_last.after = new_node
@@ -28,13 +37,35 @@ class Double_linked_list
     new_node.after = @tail
   end
 
-  def print_list
+  def print
     node = @head
     while node
       puts node.value
       node = node.after
     end
     nil
+  end
+
+
+# Cracking Code Interview 2.1
+  def delete_from_list(node)
+    node.before.after = node.after
+    node.after.before = node.before
+  end
+
+  def remove_dups
+    node = @head.after
+    my_hash = Hash.new(false)
+    while node
+      if my_hash[node.value]
+        next_node = node.after
+        delete_from_list(node)
+        node = next_node
+      else
+        my_hash[node.value] = true
+        node = node.after
+      end
+    end
   end
 
 end

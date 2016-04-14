@@ -19,6 +19,10 @@ def fizzbuzz(arr)
   ans
 end
 
+#########################
+####### Chapter 1 #######
+#########################
+
 # Cracking Code Interview 1.1
 
 def my_uniq(str)
@@ -123,5 +127,32 @@ end
 class String
   def is_substring?(str)
     str.include?(self)
+  end
+end
+
+
+#########################
+####### Chapter 2 #######
+#########################
+
+# Cracking Code Interview 2.1
+
+def delete_from_list(node)
+  node.before.after = node.after
+  node.after.before = node.before
+end
+
+def remove_dups
+  node = @head.after
+  my_hash = Hash.new(false)
+  while node
+    if my_hash[node.value]
+      next_node = node.after
+      delete_from_list(node)
+      node = next_node
+    else
+      my_hash[node.value] = true
+      node = node.after
+    end
   end
 end
