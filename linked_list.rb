@@ -26,12 +26,14 @@ class Double_linked_list
   end
 
   def seed
-    push(Double_node.new("one"))
-    push(Double_node.new("two"))
-    push(Double_node.new("three"))
-    push(Double_node.new("four"))
-    push(Double_node.new("five"))
-    push(Double_node.new("four"))
+    push(Double_node.new(2))
+    push(Double_node.new(9))
+    push(Double_node.new(6))
+    push(Double_node.new(4))
+    push(Double_node.new(12))
+    push(Double_node.new(3))
+    push(Double_node.new(1))
+    push(Double_node.new(5))
   end
 
   def push(new_node)
@@ -74,6 +76,56 @@ class Double_linked_list
     end
   end
 
+  # Cracking Code Interview 2.4
+  # TODO make this not a bang method
+
+  def my_concat(other_list)
+    new_list = Double_linked_list.new
+    node = self.head.after
+      while node.value
+        next_node = node.after
+        new_list.push(node)
+        node = next_node
+      end
+    node = other_list.head.after
+      while node.value
+        next_node = node.after
+        new_list.push(node)
+        node = next_node
+      end
+    return new_list
+  end
+
+  def my_partition(target)
+    left_side = Double_linked_list.new
+    right_side = Double_linked_list.new
+    node = @head.after
+    target_node = 0
+    while node.value
+      next_node = node.after
+
+      #if we are to left of target
+      if node.value < target
+        left_side.push(node)
+
+      #if we are to right of target
+      elsif node.value > target
+        right_side.push(node)
+      elsif node.value == target
+        target_node += 1
+      end
+      node = next_node
+    end
+
+    target_node.times do
+      left_side.push(Double_node.new(target))
+    end
+
+    return left_side.my_concat(right_side)
+  end
+
+
+
 end
 
 ###########################
@@ -101,12 +153,12 @@ class Single_linked_list
   end
 
   def seed
-    push(Single_node.new("one"))
-    push(Single_node.new("two"))
-    push(Single_node.new("three"))
-    push(Single_node.new("four"))
-    push(Single_node.new("five"))
-    push(Single_node.new("four"))
+    push(Single_node.new(1))
+    push(Single_node.new(2))
+    push(Single_node.new(3))
+    push(Single_node.new(4))
+    push(Single_node.new(5))
+    push(Single_node.new(4))
   end
 
   def push(new_node)
@@ -139,6 +191,11 @@ class Single_linked_list
       node = node.after
     end
     node
+  end
+
+  def mid_delete(node)
+    node.value = node.after.value
+    node.after = node.after.after
   end
 
 end

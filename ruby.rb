@@ -156,3 +156,28 @@ def remove_dups
     end
   end
 end
+
+# Cracking Code Interview 2.2
+
+def kth_last(k)
+  node = @head.after
+  count = 0
+  while node.value
+    node = node.after
+    count += 1
+  end
+  node = @head.after
+  (count - k).times do
+    node = node.after
+  end
+  node
+end
+
+# Cracking Code Interview 2.3
+
+def mid_delete(node)
+  node.value = node.after.value
+  node.after = node.after.after
+end
+
+# Cracking Code Interview 2.3
