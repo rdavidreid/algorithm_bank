@@ -124,8 +124,6 @@ class Double_linked_list
     return left_side.my_concat(right_side)
   end
 
-
-
 end
 
 ###########################
